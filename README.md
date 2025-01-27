@@ -1,6 +1,7 @@
 ## Sudoku Solver
 
 ![Sudoku Solver Screenshot 1](https://github.com/santhoshdwarampudi/Sudoku-Solver/blob/main/public/Screenshot%202025-01-28%20011633.png)
+![Sudoku Solver Screenshot 2](https://github.com/santhoshdwarampudi/Sudoku-Solver/blob/main/public/Screenshot%202025-01-28%20011702.png)
 
 Visualizer(at various speeds) for backtracking algorithm used to solve a valid sudoku board.
 
