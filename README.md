@@ -13,3 +13,7 @@ npm install
 ```bash
 npm run dev
 ```
+
+#### Checkout demo at: https://santhoshdwarampudi.github.io/Sudoku-Solver/
+#### Servers on http://localhost:8080 (Check webpack.config.js)
+
