@@ -1,63 +1,71 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '',
-  },
-  devtool: 'eval-source-map', // Source maps for easier debugging
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'public'),
+module.exports = (env, argv) => {
+  const isProduction = argv.mode === "production";
+
+  return {
+    mode: isProduction ? "production" : "development",
+    entry: "./src/index.js",
+    output: {
+      filename: "bundle.js",
+      path: path.resolve(__dirname, "./dist"),
+      publicPath: isProduction ? "./" : "/",
     },
-    hot: true,
-    open: true, // Automatically open the browser
-    port: 8080, // Optional: Change port
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/env',
-                {
-                  useBuiltIns: 'usage',
-                  corejs: 3,
-                  targets: '> 0.25%, not dead',
-                },
+    devtool: isProduction ? "source-map" : "eval-source-map",
+    devServer: {
+      static: {
+        directory: path.join(__dirname, "public"),
+      },
+      hot: true,
+      open: true,
+      port: 8080,
+    },
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: [
+                [
+                  "@babel/env",
+                  {
+                    useBuiltIns: "usage",
+                    corejs: 3,
+                    targets: "> 0.25%, not dead",
+                  },
+                ],
               ],
-            ],
-            plugins: ['@babel/plugin-proposal-class-properties'],
+              plugins: ["@babel/plugin-proposal-class-properties"],
+            },
           },
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-        ],
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/i,
-        type: 'asset/resource',
-      },
+        {
+          test: /\.css$/,
+          use: ["style-loader", "css-loader"],
+        },
+        {
+          test: /\.(png|jpg|jpeg|gif|svg)$/i,
+          type: "asset/resource",
+        },
+      ],
+    },
+    plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: "public/index.html",
+        filename: "index.html",
+        minify: isProduction,
+      }),
     ],
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'public/index.html',
-    }),
-  ],
+    optimization: isProduction
+      ? {
+          minimize: true,
+        }
+      : undefined,
+  };
 };
