@@ -1,0 +1,164 @@
+/* BASE STYLES */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-y: auto;
+}
+
+h1, h2 {
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  padding: 0.7rem;
+  color: #737373;
+  box-shadow: 0 5px 6px -6px #d3d3d3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  background-color: var(--background-color);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+input, textarea, button {
+  padding: 0.5rem;
+  flex-grow: 1;
+  max-width: 349px;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Other styles */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 5rem;
+}
+
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 1rem;
+  margin-bottom: 5rem;
+  background-color: var(--card-background-color);
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  transition: background-color 0.3s ease;
+}
+
+.input-wrapper {
+  margin: 0.1rem 0.5rem 1rem;
+}
+
+.input-wrapper label {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text-color);
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+  padding: 7px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: var(--input-background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.input-wrapper button {
+  width: 100%;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+@media(max-width:766px) {
+  .card {
+    box-shadow: none;
+    padding: 1rem;
+  }
+
+  .controls {
+    margin-top: 1rem;
+    flex-direction: column;
+  }
+
+  .input-section {
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Dark mode styles */
+body.dark {
+  --background-color: #1a202c;
+  --text-color: #edf2f7;
+  --card-background-color: #2d3748;
+  --input-background-color: #4a5568;
+}
+
+:root {
+  --background-color: #fff;
+  --text-color: #333;
+  --card-background-color: #fff;
+  --input-background-color: #fff;
+}
+
+/* Theme toggle styles */
+.theme-toggle {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-color);
+}
+
+/* Board styles */
+td {
+    background-color: transparent !important;
+}
